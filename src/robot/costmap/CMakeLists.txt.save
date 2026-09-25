@@ -27,15 +27,13 @@ add_library(costmap_lib
 target_include_directories(costmap_lib
   PUBLIC include)
 # Add ROS2 dependencies required by package
-ament_target_dependencies(costmap_lib rclcpp sensor_msgs nav_msgs)
+ament_target_dependencies(costmap_lib rclcpp)
 
-
-#Create ROS2 node executable from source files
+# Create ROS2 node executable from source files
 add_executable(costmap_node src/costmap_node.cpp)
 # Link to the previously built library to access costmap classes and methods
 target_link_libraries(costmap_node costmap_lib)
-
-# Copy executable to installation location
+ament_target_dependencies(costmap_lib rclcpp sensor_msgs nav_msg
 install(TARGETS
   costmap_node
   DESTINATION lib/${PROJECT_NAME})
